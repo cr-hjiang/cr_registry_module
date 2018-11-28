@@ -13,19 +13,9 @@ This repository is a basic template for a Qt5 project for a customized camera sy
 ├── log
 |   └── <log file of profram>
 ├── inc
-|   ├── engine
-|   |   └── <header files of engine>
-|   ├── parser
-|   |   └── <header files of parser>
-|   └── utility
-|       └── <header files of utility>
+|   └── <header files>
 ├── src
-|   ├── engine
-|   |   └── <source codes of engine>
-|   ├── parser
-|   |   └── <source codes of parser>
-|   └── utility
-|       └── <source codes of utility>
+|   └── <source codes>
 ├── test
 |   ├── CMakeLists.txt
 |   └── <surce codes of test case and use case>
@@ -33,11 +23,8 @@ This repository is a basic template for a Qt5 project for a customized camera sy
 ├── .gitignore
 └── README.md
 ```
-Directories [inc](./inc) and [src](./src) both have 3 subtirectories:
-1. engine
-2. parser
-3. utility
+Directories [inc](./inc) is used to store header files of the project.
 
-These subdirectories are used to store header files and source codes for different purposes.
+Directories [src](./src) is used to source codes of the project.
 
-Directories [test](./test) is used to store the test cases and use cases of the project.
+Directory [test](./test) is used to store the test cases and use cases of the project.
