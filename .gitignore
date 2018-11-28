@@ -1,0 +1,13 @@
+#Ignore these folders/files
+data/
+build/
+ignore/
+log/*.log
+*.sublime-*
+#Do NOT ignore these files
+!inc/
+!src/
+!test/
+!script/
+!config/
+!log/
