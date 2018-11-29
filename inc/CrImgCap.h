@@ -14,17 +14,22 @@
 
 class CrImgCap {
 public:
-  CrImgCap(const char* path);
+  CrImgCap(std::string path);
   ~CrImgCap();
   bool reg_finished;
   std::string sub_path;
-  const char* root_path;
-  
-  int mk_path(const char* path);
-  void set_ppl_info(std::string &name, std::string &gender, std::string &dob, std::string &ID_num);
-  void write_ppl_info(std::string &name, std::string &gender, std::string &dob, std::string &ID_num);
-private:
+  std::string root_path;
   cv::VideoCapture cap;
+
+  int mk_path(std::string path);
+  void set_ppl_info();
+  void write_ppl_info();
+  void img_cap();
+private:
+  std::string name = "";
+  std::string gender = "";
+  std::string dob = "";
+  std::string ID_num = "";
 };
 
 

@@ -3,17 +3,21 @@
 using namespace std;
 using namespace cv;
 
-CrImgCap::CrImgCap(const char* path) {
+CrImgCap::CrImgCap(string path) {
   root_path = path;
   reg_finished = false;
+  if(!cap.open(0)) {
+    cout << "[CORERAIN] Camera not working" << endl;
+    exit(0);
+  }
 }
 CrImgCap::~CrImgCap() {
 }
 
-int CrImgCap::mk_path(const char* path) {
+int CrImgCap::mk_path(string path) {
   struct stat info;
-  if(stat(path, &info) != 0) {
-    if(mkdir(path, 0777) != 0) {
+  if(stat(path.c_str(), &info) != 0) {
+    if(mkdir(path.c_str(), 0777) != 0) {
       cout << "[CORERAIN] Error to make directory" << path << endl;
       return(-1);
     } else {
@@ -38,7 +42,7 @@ int CrImgCap::mk_path(const char* path) {
 }
 
 
-void CrImgCap::set_ppl_info(string &name, string &gender, string &dob, string &ID_num) {
+void CrImgCap::set_ppl_info() {
   bool finished = false;
   int option;
   name = "";
@@ -200,7 +204,7 @@ void CrImgCap::set_ppl_info(string &name, string &gender, string &dob, string &I
   }
 }
 
-void CrImgCap::write_ppl_info(string &name, string &gender, string &dob, string &ID_num) {
+void CrImgCap::write_ppl_info() {
   string root_path_tmp = root_path;
   time_t now = time(0);
   sub_path = to_string(now)+ "_" + name +"/";
@@ -216,4 +220,38 @@ void CrImgCap::write_ppl_info(string &name, string &gender, string &dob, string 
   my_file.open(file_name);
   my_file << name << "\n" << gender << "\n" << dob << "\n" << ID_num;
   my_file.close();
+}
+
+void CrImgCap::img_cap() {
+  Mat frame;
+  cap >> frame;
+  int h = frame.size().height;
+  int w = frame.size().width;
+  int n_h = 550;
+  int n_w = 550;
+  int p1_h = (h-n_h)/2;
+  int p1_w = (w-n_w)/2;
+  int img_nu = 0;
+  while(img_nu < 5) {
+    cap >> frame;
+    Mat crop_frame(frame, Rect(p1_w, p1_h, n_w, n_h));
+    Mat mirror_frame;
+    flip(crop_frame, mirror_frame, 1);
+    imshow("Corerain Registry", mirror_frame);
+    if(waitKey(100) == 13) {
+      imshow("Corerain Registry", mirror_frame);
+      cout << "[CORERAIN] Save this photo? (press ENTER to save or other keys to cancel)" << endl;
+      if(waitKey(0) == 13) {
+        string img_name = sub_path + "img_" + to_string(img_nu) + ".jpg";
+        imwrite(img_name, crop_frame);
+        img_nu++;
+      }
+    }
+  }
+  char finished_tmp;
+  cout << "[CORERAIN] Another registry? (y or n): ";
+  cin >> finished_tmp;
+  if(finished_tmp == 'n') {
+    reg_finished = true;
+  }
 }
