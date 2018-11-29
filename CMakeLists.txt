@@ -21,7 +21,7 @@ include_directories(
   /usr/include/
   /usr/local/include/
   ${OpenCV_INSTALL_PATH}/include/
-  /usr/local/mysql/include/
+  /usr/include/mysql/
   )
 
 #Link external libraries diectories
@@ -29,7 +29,7 @@ link_directories(
   /usr/lib/
   /usr/local/lib/
   ${OpenCV_INSTALL_PATH}/lib/
-  /usr/local/mysql/lib/
+  /usr/lib/x86_64-linux-gnu/
   )
 
 #Link external libraries

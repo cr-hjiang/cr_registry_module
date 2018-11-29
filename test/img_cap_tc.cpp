@@ -4,7 +4,13 @@
 #include <string.h>
 #include <string>
 #include <vector>
+
+#define int64 opencv_broken_int
+#define uint64 opencv_broken_uint
 #include <opencv2/opencv.hpp>
+#undef int64
+#undef uint64
+
 #include <ctime>
 #include <my_global.h>
 #include <mysql.h>

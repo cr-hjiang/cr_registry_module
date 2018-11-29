@@ -19,25 +19,25 @@ int CrImgCap::mk_path(string path) {
   if(stat(path.c_str(), &info) != 0) {
     if(mkdir(path.c_str(), 0777) != 0) {
       cout << "[CORERAIN] Error to make directory" << path << endl;
-      return(-1);
+      return -1;
     } else {
-      return (0);
+      return 0;
     }
-  } else if(info.st_mode & S_IFDIR ) {
+  } else if(info.st_mode & S_IFDIR) {
     cout << "[CORERAIN] Directory named " << path << " exists." << endl;
     char dtm_tmp;
     while(1) {
       cout << "[CORERAIN] Are you sure to use it? (y or n): ";
       cin >> dtm_tmp;
       if(dtm_tmp == 'n') {
-        return(-1);
+        return -1;
       } else if(dtm_tmp == 'y') {
-        return(0);
+        return 0;
       }
     }
   } else {
     cout << "[CORERAIN] File named " << path << " exists." << endl;
-    return(-1);
+    return -1;
   }
 }
 
