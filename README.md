@@ -1,8 +1,8 @@
-# Corerain-C-CXX-Template
+# Cr registry module
 
 ## Introduction
 
-This repository is a basic template for a Qt5 project for a customized camera system. The core structure of the project is as below:
+This repository is a registry module project to use a front camera of a pc to shoot photos, register person info and store them to a database. The core structure of the project is as below:
 
 ```
 .
