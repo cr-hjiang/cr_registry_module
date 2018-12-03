@@ -31,15 +31,15 @@ int main(int argc, char** argv) {
   }
   string root_path = argv[1];
 
-
-
+  //Init a CrImgCap
   CrImgCap my_cap(root_path.c_str());
 
-  //Make img directory
+  //Make root directory
   if(my_cap.mk_path(my_cap.root_path) != 0) {
     exit(0);
   };
 
+  //Enjoy shooting photos.
   while(!my_cap.reg_finished) {
 
     my_cap.set_ppl_info();

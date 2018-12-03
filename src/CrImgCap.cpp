@@ -2,18 +2,23 @@
 
 using namespace std;
 using namespace cv;
-
+//Constructor
+//path defines root path of photos and persons info.
 CrImgCap::CrImgCap(string path) {
   root_path = path;
   reg_finished = false;
+  //Need front face camera.
   if(!cap.open(0)) {
     cout << "[CORERAIN] Camera not working" << endl;
     exit(0);
   }
 }
+
+//Destructor
 CrImgCap::~CrImgCap() {
 }
 
+//Try to make root path defined in the constructor
 int CrImgCap::mk_path(string path) {
   struct stat info;
   if(stat(path.c_str(), &info) != 0) {
@@ -41,7 +46,7 @@ int CrImgCap::mk_path(string path) {
   }
 }
 
-
+//Set a person info.
 void CrImgCap::set_ppl_info() {
   bool finished = false;
   int option;
@@ -204,6 +209,8 @@ void CrImgCap::set_ppl_info() {
   }
 }
 
+//Build a sub path in root path for a person
+//Write that person info to info.txt in sub path
 void CrImgCap::write_ppl_info() {
   string root_path_tmp = root_path;
   time_t now = time(0);
@@ -222,6 +229,8 @@ void CrImgCap::write_ppl_info() {
   my_file.close();
 }
 
+//Shoot five photos(550x550) for a person and save them
+//in current sub path
 void CrImgCap::img_cap() {
   Mat frame;
   cap >> frame;

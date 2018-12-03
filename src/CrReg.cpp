@@ -3,6 +3,8 @@
 using namespace std;
 using namespace cv;
 
+//Constructor
+//path - root path of the ready-to-use persons data Set
 CrReg::CrReg(string path) {
   struct stat info;
   if(stat(path.c_str(), &info) != 0) {
@@ -18,15 +20,18 @@ CrReg::CrReg(string path) {
   }
 }
 
+//Destructor
 CrReg::~CrReg() {
 }
 
+//Check if sub_path is valid (with a info.txt in it).
 bool CrReg::info_exist(string sub_path) {
   string file_name = sub_path+"info.txt";
   ifstream in_file(file_name.c_str());
   return (bool) in_file;
 }
 
+//Collect a sub path and add it to a path list
 vector<string> CrReg::collect_data_path() {
   vector<string> sub_path_list;
   struct dirent *sub_dir_entry;
@@ -45,6 +50,7 @@ vector<string> CrReg::collect_data_path() {
   return sub_path_list;
 }
 
+//Collect info from a sub path(data_path)
 vector<string> CrReg::collect_info(string data_path) {
   vector<string> out_info;
   int loc = data_path.find_last_of("/\\");
