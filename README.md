@@ -1,4 +1,4 @@
-# Cr registry module
+# CR registry module
 
 ## Introduction
 
