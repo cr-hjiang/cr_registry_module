@@ -20,7 +20,9 @@ find_package(OpenCV REQUIRED)
 include_directories(
   /usr/include/
   /usr/local/include/
+  #add opencv include path
   ${OpenCV_INSTALL_PATH}/include/
+  #add mysql include path
   /usr/include/mysql/
   )
 
@@ -28,7 +30,9 @@ include_directories(
 link_directories(
   /usr/lib/
   /usr/local/lib/
+  #add opencv lib path
   ${OpenCV_INSTALL_PATH}/lib/
+  #add mysql lib path
   /usr/lib/x86_64-linux-gnu/
   )
 
