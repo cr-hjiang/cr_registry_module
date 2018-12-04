@@ -75,6 +75,10 @@ make
 
 ## Usage
 1. Raw info collection:
+```
 ./bin/img_cap_tc <registry folder root>
+```
 2. Upload to MySQL:
+```
 ./bin/reg_tc <registry folder root> <my sql server IP> <my sql account> <my sql password> <my sql database> <my sql table>
+```
